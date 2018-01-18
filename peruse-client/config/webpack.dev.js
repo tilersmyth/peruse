@@ -162,6 +162,9 @@ module.exports = function (options) {
         // app.get('/some/path', function(req, res) {
         //   res.json({ custom: 'response' });
         // });
+      },
+      proxy: {
+        '/api':  `http://localhost:${process.env.SERVER_PORT || '4040'}`
       }
     },
 

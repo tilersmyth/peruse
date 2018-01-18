@@ -1,0 +1,36 @@
+version: '3.0'
+ 
+services:
+ nginx-proxy:
+  image: jwilder/nginx-proxy
+  container_name: nginx-proxy
+  ports:
+  - "80:80"
+  volumes:
+  - /var/run/docker.sock:/tmp/docker.sock:ro
+ peruse-client:
+  build:
+   context: ./peruse-client
+  volumes:
+  - ./peruse-client/src:/app/src
+  ports:
+  - "3000:3000"
+  depends_on:
+  - nginx-proxy
+ peruse-server:
+  build:
+   context: ./peruse-server
+  volumes:
+  - .:/app
+  - /peruse-server/app/node_modules/
+  ports:
+  - "4040:4040"
+  environment:
+  - MONGO_HOST=mongodb://mongo/peruse
+  - DEBUG=peruse-server:*
+  links:
+  - mongo
+ mongo:
+   image: "mongo:3.4.2"
+   ports:
+   - "27017:27017"
