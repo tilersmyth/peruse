@@ -44,6 +44,7 @@ import { AppState } from './app.service';
     </nav>
 
     <main>
+    <button mat-button>My Button</button>
       <router-outlet></router-outlet>
     </main>
 
@@ -59,7 +60,7 @@ import { AppState } from './app.service';
     </footer>
   `
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit { 
   public name = 'Angular Starter';
   public tipe = 'assets/img/tipe.png';
   public twitter = 'https://twitter.com/gdi2290';

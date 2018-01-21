@@ -11,8 +11,10 @@ services:
  peruse-client:
   build:
    context: ./peruse-client
+  command: npm run start:docker
   volumes:
-  - ./peruse-client/src:/app/src
+  - ./peruse-client:/usr/app
+  - client-deps:/usr/app/node_modules
   ports:
   - "3000:3000"
   depends_on:
@@ -31,6 +33,9 @@ services:
   links:
   - mongo
  mongo:
-   image: "mongo:3.4.2"
-   ports:
-   - "27017:27017"
+  image: "mongo:3.4.2"
+  ports:
+  - "27017:27017"
+
+volumes:
+ client-deps:

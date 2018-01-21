@@ -6,6 +6,12 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /*
+ * Angular material
+ */
+import { MaterialModule } from './material.module';
+import 'hammerjs';
+
+/*
  * Platform and Environment providers/directives/pipes
  */
 import { environment } from 'environments/environment';
@@ -55,6 +61,7 @@ type StoreType = {
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    MaterialModule,
     RouterModule.forRoot(ROUTES, {
       useHash: Boolean(history.pushState) === false,
       preloadingStrategy: PreloadAllModules
